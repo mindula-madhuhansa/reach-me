@@ -1,12 +1,10 @@
-import Header from "@/components/header";
+import HeroForm from "@/components/forms/hero-form";
 
 export default function Home() {
   return (
     <main>
-      <Header />
-
-      <section className="p-6 pt-32 max-w-7xl mx-auto">
-        <div className="max-w-sm lg:max-w-md mb-4">
+      <section className="pt-32">
+        <div className="max-w-sm lg:max-w-lg mb-4">
           <h1 className="text-5xl lg:text-6xl font-bold">
             Your one link
             <br />
@@ -18,20 +16,7 @@ export default function Home() {
           </h2>
         </div>
 
-        <form className="inline-flex items-center shadow-lg shadow-gray-500/20">
-          <span className="bg-white py-2 lg:py-4 pl-4">reach.me/</span>
-          <input
-            type="text"
-            placeholder="username"
-            className="outline-none py-2 lg:py-4"
-          />
-          <button
-            type="submit"
-            className="bg-blue-500 text-white p-2 lg:p-4 lg:px-6 text-xs lg:text-base"
-          >
-            Join for Free
-          </button>
-        </form>
+        <HeroForm />
       </section>
     </main>
   );
