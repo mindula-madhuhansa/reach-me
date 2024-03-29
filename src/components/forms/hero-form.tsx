@@ -1,18 +1,32 @@
 "use client";
 
 import { signIn } from "next-auth/react";
+import { redirect, useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
-export default function HeroForm() {
-  const [username, setUsername] = useState("");
+type HeroFormProps = {
+  user?: {
+    name?: string | null | undefined;
+    email?: string | null | undefined;
+    image?: string | null | undefined;
+  };
+};
+
+export default function HeroForm({ user }: HeroFormProps) {
+  const router = useRouter();
+  const [reachName, setReachName] = useState("");
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!username) return;
+    if (!reachName) return;
 
-    await signIn("google", {
-      callbackUrl: `/account?reachName=${username}`,
-    });
+    if (user) {
+      router.push(`/account?reachName=${reachName}`);
+    } else {
+      await signIn("google", {
+        callbackUrl: `/account?reachName=${reachName}`,
+      });
+    }
   };
 
   return (
@@ -22,8 +36,8 @@ export default function HeroForm() {
     >
       <span className="bg-white py-4 pl-4">reach.me/</span>
       <input
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={reachName}
+        onChange={(e) => setReachName(e.target.value)}
         type="text"
         placeholder="reach_name"
         className="py-4"
