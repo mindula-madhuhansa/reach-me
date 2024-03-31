@@ -13,14 +13,13 @@ export default function Sidebar({ session }: { session: Session }) {
 
   return (
     <aside className=" bg-white max-w-64 flex-1 p-4 shadow-sm">
-      <div className="rounded-full overflow-hidden aspect-square w-24 mx-auto">
-        <Image
-          src={session.user?.image || "/avatar.jpg"}
-          alt="Avatar"
-          width={256}
-          height={256}
-        />
-      </div>
+      <Image
+        src={session.user?.image || "/avatar.jpg"}
+        alt="Avatar"
+        width={128}
+        height={128}
+        className="rounded-full object-cover aspect-square mx-auto"
+      />
 
       <div className="text-center mt-12">
         <nav className="inline-flex flex-col text-center gap-6">

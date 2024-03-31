@@ -19,9 +19,12 @@ type PageInfoFormProps = {
 export default function PageInfoForm({ page, user }: PageInfoFormProps) {
   const bgColorRef = useRef<HTMLInputElement>(null);
   const bgImageRef = useRef<HTMLInputElement>(null);
+  const avatarRef = useRef<HTMLInputElement>(null);
+
   const [bgColor, setBgColor] = useState<string>(page.bgColor);
   const [bgType, setBgType] = useState<string>(page.bgType);
   const [bgImage, setBgImage] = useState<string>(page.bgImage);
+  const [avatar, setAvatar] = useState<string>(user?.image || "/avatar.jpg");
 
   const handleSavePageInfo = async (formData: FormData) => {
     const result = await savePageInfo(formData);
@@ -37,7 +40,10 @@ export default function PageInfoForm({ page, user }: PageInfoFormProps) {
     setBgType(value);
   };
 
-  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
+  const upload = async (
+    e: ChangeEvent<HTMLInputElement>,
+    callback: (link: string) => void
+  ) => {
     const file = e.target.files?.[0];
 
     if (file) {
@@ -51,7 +57,7 @@ export default function PageInfoForm({ page, user }: PageInfoFormProps) {
         }).then((res) => {
           if (res.ok) {
             res.json().then((link) => {
-              setBgImage(link);
+              callback(link);
               resolve(link);
             });
           } else {
@@ -66,6 +72,18 @@ export default function PageInfoForm({ page, user }: PageInfoFormProps) {
         error: "Something went wrong!",
       });
     }
+  };
+
+  const handleBannerChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    await upload(e, (link) => {
+      setBgImage(link);
+    });
+  };
+
+  const handleAvatarChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    await upload(e, (link) => {
+      setAvatar(link);
+    });
   };
 
   return (
@@ -115,37 +133,48 @@ export default function PageInfoForm({ page, user }: PageInfoFormProps) {
             </div>
           </div>
           {bgType === "image" && (
-            <div className="flex  gap-4">
-              <button
-                type="button"
-                onClick={() => bgImageRef.current?.click()}
-                className="bg-black/50 p-2 rounded-full"
-              >
-                <GalleryAdd color="white" />
-                <input type="hidden" name="bgImage" value={bgImage} />
-                <input
-                  type="file"
-                  ref={bgImageRef}
-                  onChange={handleFileChange}
-                  className="sr-only"
-                />
-              </button>
-              {/* <button type="button" className="bg-black/50 p-2 rounded-full">
-                <GalleryRemove color="white" />
-              </button> */}
-            </div>
+            <button
+              type="button"
+              onClick={() => bgImageRef.current?.click()}
+              className="bg-black/50 p-2 rounded-full hover:bg-gray-800/40 transition-all ease-in-out"
+            >
+              <GalleryAdd color="white" />
+              <input type="hidden" name="bgImage" value={bgImage} />
+              <input
+                type="file"
+                ref={bgImageRef}
+                onChange={handleBannerChange}
+                className="sr-only"
+              />
+            </button>
           )}
         </div>
 
         {/* Avatar */}
         <div className="flex ml-12 -mb-12">
-          <Image
-            src={user.image || "/avatar.jpg"}
-            alt="Avatar"
-            width={128}
-            height={128}
-            className="rounded-full object-contain relative -top-16 border-4 shadow-xl shadow-black/30 border-blue-500"
-          />
+          <div className="relative -top-16 w-32 h-32">
+            <Image
+              src={avatar}
+              alt="Avatar"
+              fill
+              className="rounded-full object-cover border-4 shadow-xl shadow-black/30 border-blue-500"
+            />
+
+            <button
+              type="button"
+              onClick={() => avatarRef.current?.click()}
+              className="bg-black/50 p-2 rounded-full absolute bottom-0 right-0 shadow-xl shadow-black/30 hover:bg-gray-800/40 transition-all ease-in-out"
+            >
+              <GalleryAdd color="white" />
+              <input type="hidden" name="avatar" value={avatar} />
+              <input
+                type="file"
+                ref={avatarRef}
+                onChange={handleAvatarChange}
+                className="sr-only"
+              />
+            </button>
+          </div>
         </div>
 
         {/* Inputs */}
