@@ -26,6 +26,18 @@ export const PageSchema: Schema<IPage> = new Schema<IPage>(
       type: String,
       default: "",
     },
+    bgType: {
+      type: String,
+      default: "color",
+    },
+    bgColor: {
+      type: String,
+      default: "#000",
+    },
+    bgImage: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );

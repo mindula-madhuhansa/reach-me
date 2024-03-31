@@ -6,4 +6,7 @@ export interface IPage extends Document {
   displayName: string;
   location: string;
   bio: string;
+  bgType: string;
+  bgColor: string;
+  bgImage: string;
 }
