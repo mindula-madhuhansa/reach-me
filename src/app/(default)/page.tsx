@@ -1,13 +1,10 @@
 import { getServerSession } from "next-auth";
 
 import HeroForm from "@/components/forms/hero-form";
-import { authOptions } from "@/utils/authOptions";
+import { authOptions } from "@/libs/authOptions";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
-  console.log(session?.user);
-
-  if (!session) return;
 
   return (
     <main>

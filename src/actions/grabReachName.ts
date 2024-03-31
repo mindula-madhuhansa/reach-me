@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import { getServerSession } from "next-auth";
 
 import { Page } from "@/models/Page";
-import { authOptions } from "@/utils/authOptions";
+import { authOptions } from "@/libs/authOptions";
 
 export const grabReachName = async (formData: FormData) => {
   const reachName: string = formData.get("reachName") as string;

@@ -21,7 +21,7 @@ export default function ReachNameForm({
     setIsTaken(result === false);
 
     if (result) {
-      redirect(`/account/${formData.get("reachName")}`);
+      redirect(`/account?created=${formData.get("reachName")}`);
     }
   };
 

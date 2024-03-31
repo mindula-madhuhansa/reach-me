@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 
-import { authOptions } from "@/utils/authOptions";
+import { authOptions } from "@/libs/authOptions";
 import SignOutButton from "@/components/buttons/signout-button";
 import { Link2 } from "iconic-react";
 
