@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/libs/authOptions";
 import ReachNameForm from "@/components/forms/reach-name-form";
 import { getPageDetails } from "@/utils/getPageDetails";
+import PageInfoForm from "@/components/forms/page-info-form";
 
 type AccountPageProps = {
   searchParams: {
@@ -29,5 +30,9 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
     );
   }
 
-  return <div>Page: {page.uri}</div>;
+  return (
+    <div>
+      <PageInfoForm page={page} />
+    </div>
+  );
 }

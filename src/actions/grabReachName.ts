@@ -3,7 +3,7 @@
 import mongoose from "mongoose";
 import { getServerSession } from "next-auth";
 
-import { Page } from "@/models/Page";
+import { Page } from "@/db/models/Page";
 import { authOptions } from "@/libs/authOptions";
 
 export const grabReachName = async (formData: FormData) => {

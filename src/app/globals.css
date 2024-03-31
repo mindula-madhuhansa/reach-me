@@ -6,6 +6,27 @@ body {
   @apply bg-gray-50;
 }
 
-input {
-  @apply outline-none;
+input[type="text"],
+textarea {
+  @apply bg-gray-100 w-full block p-2 mt-1 mb-2 focus:outline-blue-500 rounded-md;
+}
+
+.page-info-label {
+  @apply uppercase text-gray-500/80 text-xs font-medium;
+}
+
+.radio-toggler {
+  @apply bg-gray-200 inline-flex border border-blue-500 rounded-full shadow-md;
+}
+
+.radio-toggler span {
+  @apply flex items-center gap-1 p-2 text-gray-500 cursor-pointer rounded-full text-xs;
+}
+
+.radio-toggler input[type="radio"] {
+  @apply hidden;
+}
+
+.radio-toggler input[type="radio"]:checked + span {
+  @apply bg-blue-500 text-white;
 }

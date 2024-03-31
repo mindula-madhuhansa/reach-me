@@ -23,7 +23,7 @@ export default function Sidebar({ session }: { session: Session }) {
       </div>
 
       <div className="text-center mt-12">
-        <nav className="inline-flex flex-col text-center gap-6 text-lg">
+        <nav className="inline-flex flex-col text-center gap-6">
           {SidebarNavLinks.map((link) => (
             <Link
               key={link.id}
@@ -34,7 +34,7 @@ export default function Sidebar({ session }: { session: Session }) {
                   : "text-gray-500"
               }`}
             >
-              <link.icon />
+              <link.icon size={20} />
               <span className="ml-8">{link.label}</span>
             </Link>
           ))}
