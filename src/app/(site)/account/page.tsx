@@ -16,7 +16,7 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
   const session = await getServerSession(authOptions);
   const reachName = searchParams.reachName;
 
-  if (!session) {
+  if (!session?.user) {
     redirect("/");
   }
 
@@ -32,7 +32,7 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
 
   return (
     <div>
-      <PageInfoForm page={page} />
+      <PageInfoForm page={page} user={session.user} />
     </div>
   );
 }

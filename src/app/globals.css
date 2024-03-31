@@ -6,8 +6,7 @@ body {
   @apply bg-gray-50;
 }
 
-input[type="text"],
-textarea {
+.page-info-input {
   @apply bg-gray-100 w-full block p-2 mt-1 mb-2 focus:outline-blue-500 rounded-md;
 }
 

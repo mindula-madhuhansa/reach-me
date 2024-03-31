@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+
 import "./globals.css";
 
 const rubik = Rubik({
@@ -19,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={rubik.className}>
+        <Toaster />
         <div>{children}</div>
       </body>
     </html>

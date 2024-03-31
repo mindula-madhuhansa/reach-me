@@ -1,18 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, ArrowRotateRight, Warning2 } from "iconic-react";
+import { ArrowRight, Warning2 } from "iconic-react";
 import { redirect } from "next/navigation";
-import { useFormStatus } from "react-dom";
 
 import { grabReachName } from "@/actions/grabReachName";
+import SubmitButton from "@/components/buttons/submit-button";
 
 export default function ReachNameForm({
   reachName,
 }: {
   reachName: string | undefined;
 }) {
-  const { pending } = useFormStatus();
   const [isTaken, setIsTaken] = useState(false);
 
   const handleSubmit = async (formData: FormData) => {
@@ -39,7 +38,7 @@ export default function ReachNameForm({
           defaultValue={reachName}
           type="text"
           placeholder="reach_name"
-          className="p-2 border w-full mb-2 text-center"
+          className="p-2 border w-full mb-2 text-center outline-blue-500"
         />
 
         {isTaken && (
@@ -48,18 +47,11 @@ export default function ReachNameForm({
             <span className="text-sm">This Reach name is already taken.</span>
           </div>
         )}
-        <button
-          type="submit"
-          disabled={pending}
-          className="flex items-center justify-center gap-3 bg-blue-500 text-white disabled:bg-blue-300 disabled:to-gray-200 py-2 px-4 w-full disabled:"
-        >
+
+        <SubmitButton>
           <span>Claim this Reach name</span>
-          {pending ? (
-            <ArrowRotateRight size="24" className="animate-spin" />
-          ) : (
-            <ArrowRight size="24" />
-          )}
-        </button>
+          <ArrowRight size="24" />
+        </SubmitButton>
       </div>
     </form>
   );

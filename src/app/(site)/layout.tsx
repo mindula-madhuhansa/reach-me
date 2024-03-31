@@ -20,7 +20,7 @@ export default async function SiteLayout({
       <Sidebar session={session} />
 
       <div className="flex-1">
-        <div className="bg-white m-4 shadow-sm grow">{children}</div>
+        <div>{children}</div>
       </div>
     </div>
   );
