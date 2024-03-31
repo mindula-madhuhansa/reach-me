@@ -12,7 +12,7 @@ export default function Sidebar({ session }: { session: Session }) {
   const pathname = usePathname();
 
   return (
-    <aside className=" bg-white max-w-64 flex-1 p-4 shadow-sm">
+    <aside className="bg-gray-50 max-w-64 flex-1 p-4 shadow-md rounded-r-2xl">
       <Image
         src={session.user?.image || "/avatar.jpg"}
         alt="Avatar"

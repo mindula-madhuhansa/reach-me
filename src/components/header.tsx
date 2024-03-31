@@ -9,7 +9,7 @@ export default async function Header() {
   const session = await getServerSession(authOptions);
 
   return (
-    <header className="bg-white border-b py-4">
+    <header className="bg-gray-50 border-b py-4">
       <div className="flex justify-between max-w-7xl mx-auto px-6">
         <div className="flex gap-8">
           <Link

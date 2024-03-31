@@ -5,6 +5,7 @@ import { authOptions } from "@/libs/authOptions";
 import ReachNameForm from "@/components/forms/reach-name-form";
 import { getPageDetails } from "@/utils/getPageDetails";
 import PageInfoForm from "@/components/forms/page-info-form";
+import PageButtonsForm from "@/components/forms/page-buttons-form";
 
 type AccountPageProps = {
   searchParams: {
@@ -24,7 +25,7 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
 
   if (!page) {
     return (
-      <div className="mt-32 bg-white border p-8 rounded-xl max-w-lg mx-auto shadow-md">
+      <div className="mt-32 bg-gray-50 border p-8 rounded-xl max-w-lg mx-auto shadow-md">
         <ReachNameForm reachName={reachName} />
       </div>
     );
@@ -33,6 +34,7 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
   return (
     <div>
       <PageInfoForm page={page} user={session.user} />
+      <PageButtonsForm page={page} user={session.user} />
     </div>
   );
 }
