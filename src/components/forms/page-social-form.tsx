@@ -1,6 +1,5 @@
 "use client";
 
-import { User } from "next-auth";
 import { Add, LayoutMaximize, Ram, Trash } from "iconic-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -13,12 +12,7 @@ import { IPage } from "@/types/Page";
 import { SocialButton } from "@/types";
 import { saveSocialInfo } from "@/actions/saveSocialInfo";
 
-type PageButtonsFormProps = {
-  page: IPage;
-  user: Partial<User>;
-};
-
-export default function PageButtonsForm({ page, user }: PageButtonsFormProps) {
+export default function PageSocialForm({ page }: { page: IPage }) {
   const pageSocialButtonKeys = Object.keys(page.buttons);
   const pageSocialButton = pageSocialButtonKeys
     .map((key) => socialButtons.find((b) => b.key === key))
@@ -62,12 +56,13 @@ export default function PageButtonsForm({ page, user }: PageButtonsFormProps) {
         <ReactSortable
           list={activeSocialButtons}
           setList={setActiveSocialButtons}
+          handle=".handle"
         >
           {activeSocialButtons.map((activeBtn) => (
             <div key={activeBtn.key} className="mb-4 px-4 flex items-center">
               <div className="flex w-full">
                 <div className="flex min-w-32 md:min-w-48 gap-2 items-center rounded-l-full p-2 pl-4 bg-blue-500 text-white">
-                  <LayoutMaximize className="w-5 h-5 cursor-pointer text-gray-300 hover:text-white transition-all ease-in" />
+                  <LayoutMaximize className="handle w-5 h-5 cursor-grabbing text-gray-300 hover:text-white transition-all ease-in" />
                   <div className="border h-full mx-1" />
                   <activeBtn.icon className="w-5 h-5" />
                   <span className="capitalize text-xs md:text-base">
@@ -111,7 +106,7 @@ export default function PageButtonsForm({ page, user }: PageButtonsFormProps) {
         </div>
 
         {/* Submit Button */}
-        <div className="max-w-64 mx-auto mt-4">
+        <div className="max-w-64 mx-auto md:ml-auto md:mx-0 mt-4">
           <SubmitButton>
             <Ram size="24" />
             <span>Save</span>

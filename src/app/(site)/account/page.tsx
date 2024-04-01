@@ -5,7 +5,8 @@ import { authOptions } from "@/libs/authOptions";
 import ReachNameForm from "@/components/forms/reach-name-form";
 import { getPageDetails } from "@/utils/getPageDetails";
 import PageInfoForm from "@/components/forms/page-info-form";
-import PageButtonsForm from "@/components/forms/page-buttons-form";
+import PageSocialForm from "@/components/forms/page-social-form";
+import PageLinksForm from "@/components/forms/page-links-form";
 
 type AccountPageProps = {
   searchParams: {
@@ -34,7 +35,8 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
   return (
     <div>
       <PageInfoForm page={page} user={session.user} />
-      <PageButtonsForm page={page} user={session.user} />
+      <PageSocialForm page={page} />
+      <PageLinksForm page={page} />
     </div>
   );
 }

@@ -42,6 +42,10 @@ export const PageSchema: Schema<IPage> = new Schema<IPage>(
       type: Object,
       default: {},
     },
+    links: {
+      type: Object,
+      default: [{}],
+    },
   },
   { timestamps: true }
 );

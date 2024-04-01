@@ -11,6 +11,7 @@ import RadioTogglerButton from "@/components/formComponents/radio-toggler-button
 import SubmitButton from "@/components/buttons/submit-button";
 import { savePageInfo } from "@/actions/savePageInfo";
 import SectionBox from "@/components/section-box";
+import { uploadImage as upload } from "@/utils/uploadImage";
 
 type PageInfoFormProps = {
   page: IPage;
@@ -39,40 +40,6 @@ export default function PageInfoForm({ page, user }: PageInfoFormProps) {
 
   const handleBgTypeChange = (value: string) => {
     setBgType(value);
-  };
-
-  const upload = async (
-    e: ChangeEvent<HTMLInputElement>,
-    callback: (link: string) => void
-  ) => {
-    const file = e.target.files?.[0];
-
-    if (file) {
-      const uploadPromise = new Promise((resolve, reject) => {
-        const data = new FormData();
-        data.set("file", file);
-
-        fetch("/api/upload", {
-          method: "POST",
-          body: data,
-        }).then((res) => {
-          if (res.ok) {
-            res.json().then((link) => {
-              callback(link);
-              resolve(link);
-            });
-          } else {
-            reject();
-          }
-        });
-      });
-
-      await toast.promise(uploadPromise, {
-        loading: "Uploading",
-        success: "Uploaded!",
-        error: "Something went wrong!",
-      });
-    }
   };
 
   const handleBannerChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -217,7 +184,7 @@ export default function PageInfoForm({ page, user }: PageInfoFormProps) {
               className="page-info-input"
             />
 
-            <div className="max-w-64 ml-auto mt-4">
+            <div className="max-w-64 mx-auto md:ml-auto md:mx-0 mt-4">
               <SubmitButton>
                 <Ram size="24" />
                 <span>Save</span>

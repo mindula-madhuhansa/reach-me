@@ -11,7 +11,7 @@ export default function SubmitButton({ children }: SubmitButtonProps) {
     <button
       type="submit"
       disabled={pending}
-      className={`flex items-center justify-center gap-3 bg-blue-500 text-white disabled:bg-blue-300 disabled:text-gray-100 py-2 px-4 w-full rounded-md`}
+      className={`flex items-center justify-center gap-3 bg-blue-500 text-white disabled:bg-blue-300 disabled:text-gray-100 hover:bg-blue-400 transition-all ease-in-out py-2 px-4 w-full rounded-md`}
     >
       {pending ? (
         <>

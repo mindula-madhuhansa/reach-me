@@ -1,4 +1,5 @@
 import { Document } from "mongoose";
+import { OtherLink } from ".";
 
 export interface IPage extends Document {
   uri: string;
@@ -10,4 +11,5 @@ export interface IPage extends Document {
   bgColor: string;
   bgImage: string;
   buttons: { [key: string]: string };
+  links: OtherLink[];
 }

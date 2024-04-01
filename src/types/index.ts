@@ -7,3 +7,11 @@ export type SocialButton = {
   icon: Icon;
   placeholder: string;
 };
+
+export type OtherLink = {
+  id: string;
+  title: string;
+  subtitle: string;
+  icon: string;
+  url: string;
+};
