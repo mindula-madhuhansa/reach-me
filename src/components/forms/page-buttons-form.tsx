@@ -1,9 +1,10 @@
 "use client";
 
 import { User } from "next-auth";
-import { Add, Ram, Trash } from "iconic-react";
+import { Add, LayoutMaximize, Ram, Trash } from "iconic-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { ReactSortable } from "react-sortablejs";
 
 import { socialButtons } from "@/constants/social-media-buttons";
 import SectionBox from "@/components/section-box";
@@ -58,32 +59,39 @@ export default function PageButtonsForm({ page, user }: PageButtonsFormProps) {
         <h2 className="text-xl md:text-2xl font-bold mb-4">Social Media</h2>
 
         {/* Active Social Icons */}
-        {activeSocialButtons.map((activeBtn) => (
-          <div key={activeBtn.key} className="mb-4 px-4 flex items-center">
-            <div className="flex w-full">
-              <div className="flex min-w-32 md:min-w-40 gap-2 items-center rounded-l-full p-2 pl-4 bg-blue-500 text-white">
-                <activeBtn.icon className="w-5 h-5" />
-                <span className="capitalize text-xs md:text-base">
-                  {activeBtn.label}
-                </span>
+        <ReactSortable
+          list={activeSocialButtons}
+          setList={setActiveSocialButtons}
+        >
+          {activeSocialButtons.map((activeBtn) => (
+            <div key={activeBtn.key} className="mb-4 px-4 flex items-center">
+              <div className="flex w-full">
+                <div className="flex min-w-32 md:min-w-48 gap-2 items-center rounded-l-full p-2 pl-4 bg-blue-500 text-white">
+                  <LayoutMaximize className="w-5 h-5 cursor-pointer text-gray-300 hover:text-white transition-all ease-in" />
+                  <div className="border h-full mx-1" />
+                  <activeBtn.icon className="w-5 h-5" />
+                  <span className="capitalize text-xs md:text-base">
+                    {activeBtn.label}
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  name={activeBtn.key}
+                  placeholder={activeBtn.placeholder}
+                  defaultValue={page.buttons[activeBtn.key]}
+                  className="active-social-input"
+                />
               </div>
-              <input
-                type="text"
-                name={activeBtn.key}
-                placeholder={activeBtn.placeholder}
-                defaultValue={page.buttons[activeBtn.key]}
-                className="active-social-input"
-              />
+              <button
+                type="button"
+                onClick={() => removeSocialButton(activeBtn)}
+                className="p-1.5 md:p-2 bg-gray-200 hover:text-red-500 hover:bg-red-200 transition-all ease-out"
+              >
+                <Trash className="h-6 w-6" variant="Bold" />
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={() => removeSocialButton(activeBtn)}
-              className="p-1.5 md:p-2 bg-gray-200 hover:text-red-500 hover:bg-red-200 transition-all ease-out"
-            >
-              <Trash className="h-6 w-6" variant="Bold" />
-            </button>
-          </div>
-        ))}
+          ))}
+        </ReactSortable>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mt-6 border border-gray-300 p-6 rounded-md mx-4">
           {/* All Social Icons */}
