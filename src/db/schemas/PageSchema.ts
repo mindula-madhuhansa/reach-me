@@ -38,6 +38,10 @@ export const PageSchema: Schema<IPage> = new Schema<IPage>(
       type: String,
       default: "",
     },
+    buttons: {
+      type: Object,
+      default: {},
+    },
   },
   { timestamps: true }
 );

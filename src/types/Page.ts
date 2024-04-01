@@ -9,4 +9,5 @@ export interface IPage extends Document {
   bgType: string;
   bgColor: string;
   bgImage: string;
+  buttons: { [key: string]: string };
 }
