@@ -1,4 +1,7 @@
-import { model, models } from "mongoose";
-import { UserSchema } from "@/db/schemas/UserSchema";
+import mongoose, { Model } from "mongoose";
 
-export const User = models?.User || model("User", UserSchema);
+import { UserSchema } from "@/db/schemas/UserSchema";
+import { IUser } from "@/types/User";
+
+export const User: Model<IUser> =
+  mongoose.models.User || mongoose.model<IUser>("User", UserSchema);

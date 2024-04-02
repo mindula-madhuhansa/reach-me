@@ -9,6 +9,17 @@ import {
   Youtube,
 } from "iconic-react";
 
+export const socialIcons = {
+  email: Sms,
+  mobile: Call,
+  website: Global,
+  instagram: InstagramIcon,
+  facebook: FacebookIcon,
+  youtube: Youtube,
+  whatsapp: Whatsapp,
+  spotify: SpotifyIcon,
+};
+
 export const socialButtons = [
   {
     id: 1,

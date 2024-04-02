@@ -1,8 +1,9 @@
 import { Schema } from "mongoose";
 
-export const UserSchema = new Schema({
+import { IUser } from "@/types/User";
+
+export const UserSchema: Schema<IUser> = new Schema<IUser>({
   name: String,
   email: String,
   image: String,
-  emailVerified: Date,
 });
