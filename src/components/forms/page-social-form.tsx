@@ -1,7 +1,7 @@
 "use client";
 
 import { Add, LayoutMaximize, Ram, Trash } from "iconic-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { ReactSortable } from "react-sortablejs";
 
@@ -9,17 +9,29 @@ import { socialButtons } from "@/constants/social-media-buttons";
 import SectionBox from "@/components/section-box";
 import SubmitButton from "@/components/buttons/submit-button";
 import { IPage } from "@/types/Page";
-import { SocialButton } from "@/types";
+import { SocialButton } from "@/types/Types";
 import { saveSocialInfo } from "@/actions/saveSocialInfo";
 
 export default function PageSocialForm({ page }: { page: IPage }) {
-  const pageSocialButtonKeys = Object.keys(page.buttons);
+  const pageSocialButtonKeys = Object.keys(page.buttons || {});
   const pageSocialButton = pageSocialButtonKeys
     .map((key) => socialButtons.find((b) => b.key === key))
     .filter((button) => button !== undefined) as SocialButton[];
 
-  const [activeSocialButtons, setActiveSocialButtons] =
-    useState<SocialButton[]>(pageSocialButton);
+  const [activeSocialButtons, setActiveSocialButtons] = useState<
+    SocialButton[]
+  >(pageSocialButton || []);
+
+  useEffect(() => {
+    if (page && page.buttons) {
+      const pageSocialButtonKeys = Object.keys(page.buttons);
+      const pageSocialButton = pageSocialButtonKeys
+        .map((key) => socialButtons.find((b) => b.key === key))
+        .filter((button) => button !== undefined) as SocialButton[];
+
+      setActiveSocialButtons(pageSocialButton);
+    }
+  }, [page]);
 
   const availableSocialButtons = socialButtons.filter(
     (a) => !activeSocialButtons.find((b) => a.key === b.key)
@@ -73,7 +85,7 @@ export default function PageSocialForm({ page }: { page: IPage }) {
                   type="text"
                   name={activeBtn.key}
                   placeholder={activeBtn.placeholder}
-                  defaultValue={page.buttons[activeBtn.key]}
+                  defaultValue={page.buttons && page.buttons[activeBtn.key]}
                   className="active-social-input"
                 />
               </div>

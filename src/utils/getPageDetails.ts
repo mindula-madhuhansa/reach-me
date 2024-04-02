@@ -9,9 +9,13 @@ export const getPageDetails = async () => {
 
   mongoose.connect(process.env.MONGODB_URI!);
 
-  const results = await Page.findOne({
-    owner: session?.user?.email ?? undefined,
-  });
+  if (session) {
+    const results = await Page.findOne({
+      owner: session.user?.email!,
+    });
 
-  return results;
+    return results;
+  } else {
+    return [];
+  }
 };

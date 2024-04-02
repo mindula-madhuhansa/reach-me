@@ -1,5 +1,6 @@
 import { Document } from "mongoose";
-import { OtherLink } from ".";
+
+import { OtherLink } from "@/types/Types";
 
 export interface IPage extends Document {
   uri: string;

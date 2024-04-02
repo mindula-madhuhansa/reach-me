@@ -1,6 +1,5 @@
 "use client";
 
-import { User } from "next-auth";
 import {
   AddCircle,
   Image as ImageIcon,
@@ -12,14 +11,14 @@ import { ChangeEvent, useState } from "react";
 import Image from "next/image";
 import { ReactSortable } from "react-sortablejs";
 import uniqid from "uniqid";
+import toast from "react-hot-toast";
 
 import { IPage } from "@/types/Page";
 import SectionBox from "@/components/section-box";
 import SubmitButton from "@/components/buttons/submit-button";
-import { OtherLink } from "@/types";
+import { OtherLink } from "@/types/Types";
 import { uploadImage } from "@/utils/uploadImage";
 import { saveOtherLinks } from "@/actions/saveOtherLinks";
-import toast from "react-hot-toast";
 
 export default function PageLinksForm({ page }: { page: IPage }) {
   const [links, setLinks] = useState<OtherLink[]>(page.links || []);
@@ -120,7 +119,7 @@ export default function PageLinksForm({ page }: { page: IPage }) {
                   <label
                     htmlFor={`icon${link.id}`}
                     className={`bg-neutral-600 hover:bg-neutral-400 transition-all ease-out text-white rounded-full h-full w-fit cursor-pointer ${
-                      !link.icon && "p-2.5 md:p-[38px]"
+                      !link.icon && "p-2.5 md:p-[68px]"
                     }`}
                   >
                     {!link.icon ? (

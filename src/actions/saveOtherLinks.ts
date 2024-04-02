@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 
 import { Page } from "@/db/models/Page";
 import { authOptions } from "@/libs/authOptions";
-import { OtherLink } from "@/types";
+import { OtherLink } from "@/types/Types";
 
 export const saveOtherLinks = async (links: OtherLink[]) => {
   mongoose.connect(process.env.MONGODB_URI!);
