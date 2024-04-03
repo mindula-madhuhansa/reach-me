@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Page } from "@/db/models/Page";
 import { User } from "@/db/models/User";
 import { socialIcons } from "@/constants/social-media-buttons";
+import { Event } from "@/db/models/Event";
 
 type ReachMePageProps = {
   params: {
@@ -28,6 +29,8 @@ export default async function ReachMePage({ params }: ReachMePageProps) {
 
   const page = await Page.findOne({ uri: params.uri });
   const user = await User.findOne({ email: page?.owner });
+
+  await Event.create({ uri: params.uri, page: params.uri, type: "view" });
 
   return (
     <div className="bg-gradient-to-b from-neutral-950 to-neutral-600 text-white min-h-screen">
@@ -76,7 +79,10 @@ export default async function ReachMePage({ params }: ReachMePageProps) {
       <div className="mt-6 max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 p-4">
         {page?.links.map((link) => (
           <Link
-            key={link.id}
+            key={link.url}
+            ping={`${process.env.BASE_URL}/api/click?url=${btoa(
+              link.url
+            )}&page=${page.uri}`}
             target="_blank"
             href={link.url}
             className="flex bg-neutral-600 p-2 h-24 w-72 hover:scale-105 transition-all ease-out border-2 border-white/50 rounded-md"

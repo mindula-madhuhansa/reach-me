@@ -76,7 +76,7 @@ export default function PageSocialForm({ page }: { page: IPage }) {
                 <div className="flex min-w-32 md:min-w-48 gap-2 items-center rounded-l-full p-2 pl-4 bg-blue-500 text-white">
                   <LayoutMaximize className="handle w-5 h-5 cursor-grabbing text-gray-300 hover:text-white transition-all ease-in" />
                   <div className="border h-full mx-1" />
-                  <activeBtn.icon className="w-5 h-5" />
+                  <activeBtn.icon className="hidden md:block w-5 h-5" />
                   <span className="capitalize text-xs md:text-base">
                     {activeBtn.label}
                   </span>
