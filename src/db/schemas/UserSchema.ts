@@ -1,8 +1,6 @@
 import { Schema } from "mongoose";
 
-import { IUser } from "@/types/User";
-
-export const UserSchema: Schema<IUser> = new Schema<IUser>({
+export const UserSchema = new Schema({
   name: String,
   email: String,
   image: String,

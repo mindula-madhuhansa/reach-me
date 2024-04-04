@@ -1,5 +1,6 @@
 "use client";
 
+import { ViewChartData } from "@/types/Types";
 import { getDatesBetween } from "@/utils/getDatesBetween";
 
 import {
@@ -12,7 +13,7 @@ import {
   YAxis,
 } from "recharts";
 
-export default function Chart({ data }: { data: any }) {
+export default function Chart({ data }: { data: ViewChartData[] }) {
   const xLabelKey = Object.keys(data[0]).find((key) => key !== "date");
 
   const organizedData = getDatesBetween(data, xLabelKey);

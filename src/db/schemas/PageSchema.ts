@@ -1,8 +1,6 @@
 import { Schema } from "mongoose";
 
-import { IPage } from "@/types/Page";
-
-export const PageSchema: Schema<IPage> = new Schema<IPage>(
+export const PageSchema = new Schema(
   {
     uri: {
       type: String,

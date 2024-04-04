@@ -1,7 +1,5 @@
-import mongoose, { Model } from "mongoose";
+import { model, models } from "mongoose";
 
 import { PageSchema } from "@/db/schemas/PageSchema";
-import { IPage } from "@/types/Page";
 
-export const Page: Model<IPage> =
-  mongoose.models.Page || mongoose.model<IPage>("Page", PageSchema);
+export const Page = models.Page || model("Page", PageSchema);

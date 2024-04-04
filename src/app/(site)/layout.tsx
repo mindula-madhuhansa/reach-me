@@ -12,11 +12,15 @@ export default async function SiteLayout({
 }>) {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user) {
-    redirect("/");
+  if (!session) {
+    return redirect("/");
   }
 
   const page = await getPageDetails();
+
+  if (!page) {
+    return redirect("/");
+  }
 
   return (
     <div className="flex min-h-screen">

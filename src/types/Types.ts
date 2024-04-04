@@ -1,17 +1,22 @@
 import { Icon } from "iconic-react";
 
-export interface SocialButton {
+export type SocialButton = {
   id: number;
   key: string;
   label: string;
   icon: Icon;
   placeholder: string;
-}
+};
 
-export interface OtherLink {
+export type OtherLink = {
   id: string;
   title: string;
   subtitle: string;
   icon: string;
   url: string;
-}
+};
+
+export type ViewChartData = {
+  date: string;
+  views: number;
+};
