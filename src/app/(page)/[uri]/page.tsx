@@ -2,6 +2,7 @@ import { Location, Link21 } from "iconic-react";
 import mongoose from "mongoose";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import { Page } from "@/db/models/Page";
 import { User } from "@/db/models/User";
@@ -30,6 +31,10 @@ export default async function ReachMePage({ params }: ReachMePageProps) {
 
   const page = await Page.findOne({ uri: params.uri });
   const user = await User.findOne({ email: page?.owner });
+
+  if (!page || !user) {
+    return notFound();
+  }
 
   await Event.create({ uri: params.uri, page: params.uri, type: "view" });
 

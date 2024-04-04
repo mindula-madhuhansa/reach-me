@@ -29,8 +29,12 @@ export default async function Header() {
         <nav className="flex items-center gap-4 text-sm text-slate-500">
           {!session ? (
             <>
-              <Link href="/sign-in">Sign In</Link>
-              <Link href="/sign-up">Sign Up</Link>
+              <Link
+                href="/sign-in"
+                className="bg-blue-500 text-white p-2 px-4 rounded-md hover:bg-blue-400 shadow"
+              >
+                Get Started
+              </Link>
             </>
           ) : (
             <>
