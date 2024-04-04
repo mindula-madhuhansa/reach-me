@@ -18,15 +18,11 @@ export default async function SiteLayout({
 
   const page = await getPageDetails();
 
-  if (!page) {
-    return redirect("/");
-  }
-
   return (
     <div className="flex min-h-screen">
       <Sidebar session={session} page={page} />
 
-      <div className="flex-1">
+      <div className="flex-1 mt-10 lg:mt-0">
         <div>{children}</div>
       </div>
     </div>

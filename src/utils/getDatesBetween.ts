@@ -1,9 +1,10 @@
+import { ViewChartData } from "@/types/Types";
 import { addDays, differenceInDays, formatISO9075, parseISO } from "date-fns";
 
-export const getDatesBetween = (data, xLabelKey) => {
-  const organizedData = [];
+export const getDatesBetween = (data: any, xLabelKey: any) => {
+  const organizedData: any = [];
 
-  data.forEach((value, index) => {
+  data.forEach((value: any, index: number) => {
     const date = value.date;
 
     organizedData.push({

@@ -42,7 +42,10 @@ export default function HeroForm({ user }: HeroFormProps) {
         placeholder="reach_name"
         className="py-4 outline-none"
       />
-      <button type="submit" className="bg-blue-500 text-white p-4 px-6">
+      <button
+        type="submit"
+        className="bg-blue-500 text-white p-1 md:p-4 md:px-6"
+      >
         Join for Free
       </button>
     </form>

@@ -7,6 +7,7 @@ import { Page } from "@/db/models/Page";
 import { User } from "@/db/models/User";
 import { socialIcons } from "@/constants/social-media-buttons";
 import { Event } from "@/db/models/Event";
+import { OtherLink } from "@/types/Types";
 
 type ReachMePageProps = {
   params: {
@@ -77,7 +78,7 @@ export default async function ReachMePage({ params }: ReachMePageProps) {
       </div>
 
       <div className="mt-6 max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 p-4">
-        {page?.links.map((link) => (
+        {page?.links.map((link: OtherLink) => (
           <Link
             key={link.url}
             ping={`${process.env.BASE_URL}/api/click?url=${btoa(

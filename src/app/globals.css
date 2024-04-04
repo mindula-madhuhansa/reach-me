@@ -53,3 +53,11 @@ body {
 .sortable-drag {
   @apply opacity-100;
 }
+
+input#sidebar:checked ~ aside {
+  left: 0;
+}
+
+input#sidebar:checked ~ .backdrop {
+  display: block;
+}
