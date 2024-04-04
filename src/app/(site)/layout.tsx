@@ -16,7 +16,9 @@ export default async function SiteLayout({
     return redirect("/");
   }
 
-  const page = await getPageDetails();
+  const page = await getPageDetails().then((res) => {
+    return (res = JSON.parse(JSON.stringify(res)));
+  });
 
   return (
     <div className="flex min-h-screen">

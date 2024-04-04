@@ -22,7 +22,9 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
     redirect("/");
   }
 
-  const page = await getPageDetails();
+  const page = await getPageDetails().then((res) => {
+    return (res = JSON.parse(JSON.stringify(res)));
+  });
 
   if (!page) {
     return (
